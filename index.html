@@ -5,12 +5,14 @@
     <title>Cat Clicker</title>
 </head>
 <body>
-    <ul id="cat-list"></ul>
-    <div id="cat">
-
-        <h2 id="cat-name"></h2>
-        <div id="cat-count"></div>
-        <img id="cat-img" src="" alt="cute cat">
+    <div data-bind="with: currentCat">
+        <ul data-bind="foreach: cats">
+          <li><spam data-bind="text: $data"></spam></li>
+        </ul>
+        <h2 data-bind="text: name"></h2>
+        <div data-bind="text: clickCount"></div>
+        <p data-bind="text: title"></p>
+        <img src="" alt="cute cat" data-bind="click: $parent.incrementCounter, attr: {src: imgSrc}">
 
     </div>
     <script src="js/lib/knockout-3.2.0.js"></script>
