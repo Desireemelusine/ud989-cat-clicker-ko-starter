@@ -6,15 +6,17 @@
     o this incrementCounter ficou no ViewModel pois ele efetivamente muda quando o usuário tem interação
     com o view. ( por isso justifica ficar no octopus-viewmodel)
 */
-var Cat = function () {
-  this.name = ko.observable('Taty');
-  this.clickCount = ko.observable(0);
-  this.imgSrc = ko.observable('img/22252709_010df3379e_z.jpg');
-  this.imgAttribution = ko.observable('https://wwww.google.com');
+var Cat = function (data) {
+  this.name = ko.observable(data.name);
+  this.clickCount = ko.observable(data.clickCount);
+  this.imgSrc = ko.observable(data.imgSrc);
+  this.imgAttribution = ko.observable(data.imgAttribution);
 
   //list of cats
-  this.cats = ko.observableArray(['Cat 1', 'Cat 2', 'Cat 3', 'Cat 4']);
+  this.cats = ko.observableArray(data.cats);
 
+// não é alterado pq ele foi construido dentro do var Cat com as referências nelas estipuladas
+// e não no data  NON editable - Hard Code
   this.title = ko.computed(function(){
     var title;
     var clicks = this.clickCount();
@@ -47,7 +49,13 @@ var ViewModel = function () {
   <h2 data-bind="text: currentCat().name"></h2>
   <div data-bind="text: currentCat().clickCount"></div>
   */
-  this.currentCat = ko.observable( new Cat() );
+  this.currentCat = ko.observable( new Cat({
+    name = 'Taty';
+    clickCount = 0;
+    imgSrc = 'img/22252709_010df3379e_z.jpg';
+    imgAttribution = 'https://wwww.google.com';
+    cats = ['Cat 1', 'Cat 2', 'Cat 3', 'Cat 4'];
+  }) );
 
   // incrementCounter
   /* por ter criado o currentCat temos também que alterar o:
