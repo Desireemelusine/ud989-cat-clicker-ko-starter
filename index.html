@@ -5,17 +5,20 @@
     <title>Cat Clicker</title>
 </head>
 <body>
+  <h1>Welcome to Cat Cliker Feelings!</h1>
+  <ul data-bind="foreach: catList">
+    <li data-bind="text: name, click: $parent.seatCat"></li>
+  </ul>
+
     <div data-bind="with: currentCat">
-        <ul data-bind="foreach: cats">
-          <li><spam data-bind="text: $data"></spam></li>
-        </ul>
         <h2 data-bind="text: name"></h2>
         <div data-bind="text: clickCount"></div>
         <p data-bind="text: title"></p>
         <img src="" alt="cute cat" data-bind="click: $parent.incrementCounter, attr: {src: imgSrc}">
-
     </div>
     <script src="js/lib/knockout-3.2.0.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
+<!-- IDEA:  -->
+<!-- IDEA: o meu currentCat é estático,ele altera mediante o manuseio do catList.(algo específico para puxar o resto da info no currentCat( atualizar a info do current cat))  -->
